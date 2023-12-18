@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const bodyParser = require("body-parser");
-const isUrl = "is-url";
+const isUrl = require("is-url");
 
 // Basic Configuration
 const port = process.env.PORT || 3000;
@@ -19,7 +19,7 @@ app.use("/public", express.static(`${process.cwd()}/public`));
 app.post("/api/shorturl", function (req, res) {
   const url = req.body.url;
 
-  if (!isUrl(url)) {
+  if (! isUrl(url)) {
     res.send({ error: "invalid url" });
     return;
   }
