@@ -35,16 +35,17 @@ app.post('/api/shorturl', function(req, res) {
     } else {
       const shortUrl = shortId;
       urlDatabase[shortUrl] = originalUrl;
+      console.log({ original_url: originalUrl, short_url: shortUrl });
       res.json({ original_url: originalUrl, short_url: shortUrl });
       shortId++;
     }
   });
 });
 
-app.get('/api/shorturl/:shortId', function(req, res) {
-  const shortUrl = req.params.shortId;
+app.get('/api/shorturl/:id', function(req, res) {
+  const shortUrl = req.params.id;
   const originalUrl = urlDatabase[shortUrl];
-
+  console.log(originalUrl);
   if (originalUrl) {
     res.redirect(originalUrl);
   } else {
