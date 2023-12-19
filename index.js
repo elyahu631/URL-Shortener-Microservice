@@ -32,7 +32,7 @@ app.post("/api/shorturl", function (req, res) {
 
 app.get("/api/shorturl/:id", function (req, res) {
   const shortUrl = req.params.id;
-  const originalUrl = urlDatabase[shortUrl];
+  const originalUrl = shortendUrls[shortUrl];
   res.redirect(originalUrl);
 });
 
